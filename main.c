@@ -3,16 +3,10 @@
 #include <assert.h>
 #include <windows.h>
 
-void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
-{
-    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
-}
 
 int main() {
     SetConsoleOutputCP(CP_UTF8);
     printf("Caractères Unicode : ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜\n");
-    Color(15,0);
     printf("Hello, World!\n");
     printf("'1' - '0' = %d\n", '1' - '0');
     /*
@@ -49,6 +43,7 @@ int main() {
     board1[6][0] = createPiece(knight, white);
     board1[0][1] = createPiece(knight, white);
     displayBoardv2(newboard,white);
+    fflush(stdout);
     saveBoard(board1, "test.txt");
     PIECE * * * board2 = loadBoard("test.txt");
 
