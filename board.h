@@ -6,6 +6,7 @@
 #define CHESSNOTATIONTRAINING_BOARD_H
 #include <stdio.h>
 #include "piece.h"
+#include <windows.h>
 
 #define white_king   0x2654 // ♔
 #define white_queen  0x2655 // ♕

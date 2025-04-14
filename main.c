@@ -1,8 +1,18 @@
 #include <stdio.h>
 #include "threat.h"
 #include <assert.h>
+#include <windows.h>
+
+void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
+{
+    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
+}
 
 int main() {
+    SetConsoleOutputCP(CP_UTF8);
+    printf("Caractères Unicode : ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜\n");
+    Color(15,0);
     printf("Hello, World!\n");
     printf("'1' - '0' = %d\n", '1' - '0');
     /*
@@ -23,6 +33,8 @@ int main() {
     displayBoard(loadBoard("board.txt"),white)  ;
     deleteBoard(board);
     */
+    PIECE * * * newboard = createBoard();
+    setBoard(newboard);
     PIECE * * * board1 = createBoard();
     setEmpty(board1);
     board1[0][0] = createPiece(queen, white);
@@ -36,7 +48,7 @@ int main() {
     board1[7][1] = createPiece(knight, white);
     board1[6][0] = createPiece(knight, white);
     board1[0][1] = createPiece(knight, white);
-    displayBoard(board1,white);
+    displayBoardv2(newboard,white);
     saveBoard(board1, "test.txt");
     PIECE * * * board2 = loadBoard("test.txt");
 

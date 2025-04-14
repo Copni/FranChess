@@ -15,7 +15,4 @@ int * * findRook (char * move, PIECE * * * board, COLOR color);
 int * * findQueen(char *move, PIECE ***board, COLOR color);
 int * * findKing(char *move, PIECE ***board, COLOR color);
 
-
-
-*/
 #endif //LEGAL_H

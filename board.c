@@ -2,7 +2,6 @@
 // Created by IamaU on 23/12/2023.
 //
 #include "board.h"
-#include <wchar.h>
 #include <locale.h>
 
 PIECE * * *createBoard() {
@@ -154,8 +153,45 @@ void displayBoard(PIECE * * *board, COLOR side) {
     }
 }
 
-void displayBoardv2(PIECE * * *, COLOR) {
+void displayBoardv2(PIECE ***board, COLOR side) {
+    SetConsoleOutputCP(CP_UTF8);
 
+    const char *columnsWhite = "    a   b   c   d   e   f   g   h\n";
+    const char *columnsBlack = "    h   g   f   e   d   c   b   a\n";
+    const char *topBorder = "  ╔═══╤═══╤═══╤═══╤═══╤═══╤═══╤═══╗\n";
+    const char *middleBorder = "  ╟───┼───┼───┼───┼───┼───┼───┼───╢\n";
+    const char *bottomBorder = "  ╚═══╧═══╧═══╧═══╧═══╧═══╧═══╧═══╝\n";
+
+    const char *whiteSymbols[] = {
+        [king] = "K", [queen] = "Q", [rook] = "R",
+        [bishop] = "B", [knight] = "N", [pawn] = "P",
+        [empty] = " "
+    };
+
+    const char *blackSymbols[] = {
+        [king] = "k", [queen] = "q", [rook] = "r",
+        [bishop] = "b", [knight] = "n", [pawn] = "p",
+        [empty] = " "
+    };
+
+    const char *columns = (side == white) ? columnsWhite : columnsBlack;
+    printf("%s%s", columns, topBorder);
+
+    for (int i = (side == white ? 7 : 0); (side == white ? i >= 0 : i < 8); i += (side == white ? -1 : 1)) {
+        printf("%d ║", i + 1);
+        for (int j = (side == white ? 0 : 7); (side == white ? j < 8 : j >= 0); j += (side == white ? 1 : -1)) {
+            PIECE *piece = board[i][j];
+            const char *symbol = (piece->color == white) ? whiteSymbols[piece->type] : blackSymbols[piece->type];
+            const char *separator = (j == (side == white ? 7 : 0)) ? "║" : "│";
+            printf(" %s %s", symbol, separator);
+        }
+        printf("\n");
+        if ((side == white && i > 0) || (side == black && i < 7)) {
+            printf("%s", middleBorder);
+        }
+    }
+
+    printf("%s%s", bottomBorder, columns);
 }
 
 
