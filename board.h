@@ -28,6 +28,8 @@ void setEmpty(PIECE * * *board);
 
 void displayBoard(PIECE * * *, COLOR);
 
+void displayBoardv2(PIECE * * *, COLOR);
+
 void saveBoard(PIECE * * *, char * fileName);
 
 PIECE * * * loadBoard(char * fileName);

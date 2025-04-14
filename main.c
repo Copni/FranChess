@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "legal.h"
+#include "threat.h"
 #include <assert.h>
 
 int main() {

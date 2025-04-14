@@ -8,7 +8,9 @@ add_executable(FranChess main.c
         piece.c
         piece.h
         board.c
-        legal.h
-        legal.c
+        findPiece.h
+        findPiece.c
         move.h
-        move.c)
+        move.c
+        threat.c
+        threat.h)

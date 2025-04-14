@@ -154,6 +154,11 @@ void displayBoard(PIECE * * *board, COLOR side) {
     }
 }
 
+void displayBoardv2(PIECE * * *, COLOR) {
+
+}
+
+
 /*
 void display_boardv2(PIECE * * *board, COLOR side) {
     setlocale(LC_ALL, "");
