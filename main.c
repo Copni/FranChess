@@ -7,26 +7,6 @@
 int main() {
     SetConsoleOutputCP(CP_UTF8);
     printf("Caractères Unicode : ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜\n");
-    printf("Hello, World!\n");
-    printf("'1' - '0' = %d\n", '1' - '0');
-    /*
-    PIECE * * * board = createBoard();
-    setBoard(board);
-    displayBoard(board, white);
-
-    printf("\nEntrez votre coup :");
-    char * myMove = getMove();
-    int i = 0;
-    printf("\nMy move = %s \n", myMove);
-    for(int i = 0; i < length(myMove); i++) {
-        printf("%c", myMove[i]);
-    }
-    printf("\n");
-
-
-    displayBoard(loadBoard("board.txt"),white)  ;
-    deleteBoard(board);
-    */
     PIECE * * * newboard = createBoard();
     setBoard(newboard);
     PIECE * * * board1 = createBoard();
@@ -43,7 +23,6 @@ int main() {
     board1[6][0] = createPiece(knight, white);
     board1[0][1] = createPiece(knight, white);
     displayBoardv2(newboard,white);
-    fflush(stdout);
     saveBoard(board1, "test.txt");
     PIECE * * * board2 = loadBoard("test.txt");
 
@@ -66,7 +45,7 @@ int main() {
     assert(isThreatened(2, 2, board2, black) == 1);
 
     // Cas 6 : Case menacée par une reine blanche
-    assert(isThreatened(0, 7, board2, black) == 1);
+    assert(isThreatened(0, 1, board2, black) == 1);
 
     // Cas 7 : Case non menacée par une pièce noire
     assert(isThreatened(4, 4, board2, black) == 0);
@@ -75,42 +54,6 @@ int main() {
     assert(isThreatened(4, 3, board2, black) == 1);
 
     printf("Tous les tests sont passés avec succès.\n");
-    /*
-    printf("\nEnter a move:");
-    char *  myMove = getMove();
-    printf("My move = %s \n", myMove);
 
-    int * * pieceList = findKnight(myMove, board2, white);
-    int i = 0;
-    while (pieceList[i] != NULL) {
-        printf("Knight %d: %c%d\n", i + 1, pieceList[i][0] + 'a', pieceList[i][1] + 1);
-        i++;
-    }
-    */
-
-    /*
-    char move[5];
-    fgets(move,6,stdin);
-    char * test = "e4";
-    if (same_string(move, test) == 1){
-        printf("test concluant");
-    }
-    else{
-        printf("error");
-    }
-    printf(" \nTest:\0ok");
-    */
-
-    /*
-    printf("\n>>>");
-    MOVE * p = get_move();
-    if(p != NULL){
-        printf("Correct !");
-    }
-    else{
-        printf("Incorrect !");
-    }
-    printf("\nSo far so good !\n");
-    */
     return 0;
 }

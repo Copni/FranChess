@@ -7,9 +7,8 @@
 #include "findPiece.h"
 
 int isThreatened(int x, int y, PIECE * * * board, COLOR color);
-/*
 int isPinned(PIECE ** piece, PIECE * * * board, COLOR color);
 int * *  getAttackedSquares(PIECE * * * board, COLOR color);
 int * isMovePossible (char * move, PIECE * * * board, COLOR color);
-*/
+
 #endif //THREAT_H

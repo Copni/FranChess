@@ -31,9 +31,7 @@ typedef struct {
 }PIECE;
 
 PIECE * createPiece(PIECE_TYPE type, COLOR color);
-
 void printPiece(PIECE * piece);
-
 void deletePiece(PIECE *);
 
 #endif //CHESSNOTATIONTRAINING_PIECE_H

@@ -22,21 +22,12 @@
 #define black_pawn   0x265F // ♟
 
 PIECE * * * createBoard();
-
 void setBoard(PIECE * * *);
-
 void setEmpty(PIECE * * *board);
-
 void displayBoard(PIECE * * *, COLOR);
-
 void displayBoardv2(PIECE * * *, COLOR);
-
 void saveBoard(PIECE * * *, char * fileName);
-
 PIECE * * * loadBoard(char * fileName);
-
-// void display_boardv2(PIECE * * *, COLOR);
-
 void deleteBoard(PIECE * * *);
 
 #endif //CHESSNOTATIONTRAINING_BOARD_H
