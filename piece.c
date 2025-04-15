@@ -8,58 +8,60 @@ PIECE * createPiece(PIECE_TYPE type, COLOR color){
     p->type = type;
     if(type == empty) {
         p->color = grey;
+        p->symbole = '*';
     } else {
         p->color = color;
     }
-    switch(type) {
-        case pawn: {
-            if(color == white) {
-                p->symbole = '♙';
-            } else {
-               p->symbole = '♟';
-            }
-            break;
+switch(type) {
+    case pawn: {
+        if(color == white) {
+            p->symbole = 'P';
+        } else {
+            p->symbole = 'p';
         }
-        case rook: {
-            if(color == white) {
-                p->symbole = '♖';
-            } else {
-                p->symbole = '♜';
-            }
-            break;
+        break;
+    }
+    case rook: {
+        if(color == white) {
+            p->symbole = 'R';
+        } else {
+            p->symbole = 'r';
         }
-        case knight: {
-            if(color == white) {
-                p->symbole = '♘';
-            } else {
-                p->symbole = '♞';
-            }
-            break;
-        }case bishop: {
-            if(color == white) {
-                p->symbole = '♗';
-            } else {
-                p->symbole = '♝';
-            }
-            break;
+        break;
+    }
+    case knight: {
+        if(color == white) {
+            p->symbole = 'N';
+        } else {
+            p->symbole = 'n';
         }
-        case queen: {
-            if(color == white) {
-                p->symbole = '♕';
-            } else {
-                p->symbole = '♛';
-            }
-            break;
+        break;
+    }
+    case bishop: {
+        if(color == white) {
+            p->symbole = 'B';
+        } else {
+            p->symbole = 'b';
         }
-        case king: {
-            if(color == white) {
-                p->symbole = '♔';
-            } else {
-                p->symbole = '♚';
-            }
-            break;
+        break;
+    }
+    case queen: {
+        if(color == white) {
+            p->symbole = 'Q';
+        } else {
+            p->symbole = 'q';
+        }
+        break;
+    }
+    case king: {
+        if(color == white) {
+            p->symbole = 'K';
+        } else {
+            p->symbole = 'k';
+        }
+        break;
         }case empty: {
-            p->symbole = ' ';
+            p->symbole = '*';
             break;
         }
     }

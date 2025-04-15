@@ -64,39 +64,7 @@ void displayBoard(PIECE * * *board, COLOR side) {
             for (int i = 7; i >= 0; i--) {
                 printf("%d  ", i + 1);
                 for (int j = 0; j <8; j++) {
-                    if (board[i][j]->type == empty) {
-                        printf("*");
-                    } else {
-                        switch (board[i][j]->type) {
-                            case pawn: {
-                                printf("P");
-                                break;
-                            }
-                            case knight: {
-                                printf("N");
-                                break;
-                            }
-                            case bishop: {
-                                printf("B");
-                                break;
-                            }
-                            case rook: {
-                                printf("R");
-                                break;
-                            }
-                            case queen: {
-                                printf("Q");
-                                break;
-                            }
-                            case king: {
-                                printf("K");
-                                break;
-                            }
-                            case empty: {
-                                printf("*");
-                            }
-                        }
-                    }
+                    printf("%c", board[i][j]->symbole);
                 }
                 printf("\n");
             }
@@ -107,39 +75,7 @@ void displayBoard(PIECE * * *board, COLOR side) {
             for (int i = 0; i < 8; i++) {
                 printf("%d  ", i + 1);
                 for (int j = 0; j < 8; j++) {
-                    if (board[i][j] == NULL) {
-                        printf("*");
-                    } else {
-                        switch (board[i][j]->type) {
-                            case pawn: {
-                                printf("P");
-                                break;
-                            }
-                            case knight: {
-                                printf("N");
-                                break;
-                            }
-                            case bishop: {
-                                printf("B");
-                                break;
-                            }
-                            case rook: {
-                                printf("R");
-                                break;
-                            }
-                            case queen: {
-                                printf("Q");
-                                break;
-                            }
-                            case king: {
-                                printf("K");
-                                break;
-                            }
-                            case empty: {
-                                printf("*");
-                            }
-                        }
-                    }
+                    printf("%c", board[i][j]->symbole);
                 }
                 printf("\n");
             }
