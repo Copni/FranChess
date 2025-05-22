@@ -28,6 +28,8 @@ typedef struct {
     PIECE_TYPE type;
     COLOR color;
     char symbole;
+    int x;
+    int y;
 }PIECE;
 
 PIECE * createPiece(PIECE_TYPE type, COLOR color);

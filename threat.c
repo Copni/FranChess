@@ -72,7 +72,7 @@ int isThreatened(int x, int y, PIECE ***board, COLOR color) {
     return 0;
 }
 
-/*
+
 int isPinned(PIECE **pinnedPiece, PIECE **target, PIECE ***board, COLOR color) {
     int x1 = pinnedPiece[0] - board[0];
     int y1 = pinnedPiece[1] - board[0];
