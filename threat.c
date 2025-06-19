@@ -73,43 +73,9 @@ int isThreatened(int x, int y, PIECE ***board, COLOR color) {
 }
 
 
-int isPinned(PIECE **pinnedPiece, PIECE **target, PIECE ***board, COLOR color) {
-    int x1 = pinnedPiece[0] - board[0];
-    int y1 = pinnedPiece[1] - board[0];
-    int x2 = target[0] - board[0];
-    int y2 = target[1] - board[0];
-
-    // Check if the pinned piece is in the same row, column, or diagonal as the target
-    if (x1 == x2 || y1 == y2 || abs(x1 - x2) == abs(y1 - y2)) {
-        int dx = (x2 - x1) ? (x2 - x1) / abs(x2 - x1) : 0;
-        int dy = (y2 - y1) ? (y2 - y1) / abs(y2 - y1) : 0;
-
-        int x = x1 + dx;
-        int y = y1 + dy;
-        while (x != x2 || y != y2) {
-            if (board[y][x]->type != empty) {
-                if (board[y][x] == target) {
-                    x += dx;
-                    y += dy;
-                    while (x >= 0 && x < 8 && y >= 0 && y < 8) {
-                        if (board[y][x]->type != empty) {
-                            if (board[y][x]->color != color &&
-                                (board[y][x]->type == rook || board[y][x]->type == bishop || board[y][x]->type == queen)) {
-                                return 1;
-                            }
-                            break;
-                        }
-                        x += dx;
-                        y += dy;
-                    }
-                }
-                break;
-            }
-            x += dx;
-            y += dy;
-        }
-    }
-    return 0;
+PIECE * * isPinned(PIECE ** piece, PIECE * * * board, COLOR color){
+    // Check if
+    return NULL;
 }
 /*
 int * isMovePossible (char * move, PIECE * * * board, COLOR color) {
