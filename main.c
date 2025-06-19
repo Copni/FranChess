@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "threat.h"
 #include <assert.h>
-#include "gamestate.h"
+
 #include <windows.h>
 
 
@@ -28,8 +28,9 @@ int main() {
     PIECE * * * board2 = loadBoard("test.txt");
 
 
-    GameState * g = init_board_data();
+    GAMESTATE * g = init_board_data();
     display_board(g);
+
 
     return 0;
 }

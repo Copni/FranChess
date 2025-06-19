@@ -18,8 +18,8 @@ typedef struct {
     int has_b_king_moved;
     PIECE * w_king;
     PIECE * b_king;
-}GameState;
+}GAMESTATE;
 
-GameState * init_board_data();
-void display_board(GameState * g);
+GAMESTATE * init_board_data();
+void display_board(GAMESTATE * g);
 #endif //BOARD_DATA_H

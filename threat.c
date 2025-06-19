@@ -73,8 +73,52 @@ int isThreatened(int x, int y, PIECE ***board, COLOR color) {
 }
 
 
-PIECE * * isPinned(PIECE ** piece, PIECE * * * board, COLOR color){
-    // Check if
+PIECE * isPinned(PIECE * p, GAMESTATE * g){
+    PIECE * king = (p->color == white) ? g->w_king : g->b_king;
+    int xk = king->x, yk = king->y;
+    int xp = p->x, yp = p->y;
+    PIECE ***board = g->board;
+
+    // Directions : {dx, dy, type1, type2}
+    int directions[8][4] = {
+        {1, 0, rook, queen},   // droite
+        {-1, 0, rook, queen},  // gauche
+        {0, 1, rook, queen},   // bas
+        {0, -1, rook, queen},  // haut
+        {1, 1, bishop, queen}, // bas droite
+        {-1, 1, bishop, queen},// bas gauche
+        {1, -1, bishop, queen},// haut droite
+        {-1, -1, bishop, queen}// haut gauche
+    };
+
+    for(int d=0; d<8; d++){
+        int dx = directions[d][0], dy = directions[d][1];
+        int i = 1;
+        int found_p = 0;
+        int x = xk + dx, y = yk + dy;
+        // Parcours depuis le roi
+        while(x >= 0 && x < 8 && y >= 0 && y < 8){
+            if(board[y][x]->type != empty){
+                if(!found_p){
+                    if(board[y][x] == p){
+                        found_p = 1;
+                    } else {
+                        break; // autre pièce entre roi et p
+                    }
+                } else {
+                    // Après p, vérifier pièce adverse
+                    if(board[y][x]->color != p->color &&
+                       (board[y][x]->type == directions[d][2] || board[y][x]->type == directions[d][3])){
+                        return board[y][x];
+                       }
+                    break;
+                }
+            }
+            x += dx;
+            y += dy;
+            i++;
+        }
+    }
     return NULL;
 }
 /*

@@ -5,12 +5,11 @@
 #ifndef THREAT_H
 #define THREAT_H
 #include "findPiece.h"
+#include "gamestate.h"
 
 int isThreatened(int x, int y, PIECE * * * board, COLOR color);
-PIECE * * isPinned(PIECE ** piece, PIECE * * * board, COLOR color);
-// Return an array of 2 PIECE *
-// Index 0 = attacking piece
-// Index 1 = defended piece
+PIECE * isPinned(PIECE * piece, GAMESTATE * g);
+
 
 
 int * *  getAttackedSquares(PIECE * * * board, COLOR color);

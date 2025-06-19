@@ -3,8 +3,8 @@
 //
 #include "gamestate.h"
 
-GameState * init_board_data() {
-    GameState * g = (GameState *) malloc(sizeof(GameState));
+GAMESTATE * init_board_data() {
+    GAMESTATE * g = (GAMESTATE *) malloc(sizeof(GAMESTATE));
     g->board = createBoard();
     setBoard(g->board);
     g->black_score = 0;
@@ -20,7 +20,7 @@ GameState * init_board_data() {
     return g;
 }
 
-void display_board(GameState * g) {
+void display_board(GAMESTATE * g) {
     printf("Black score: %d\n", g->black_score);
     printf("White score: %d\n", g->white_score);
     printf("Black rook on column a moved: %s\n", g->has_ab_rook_moved ? "True" : "False");
