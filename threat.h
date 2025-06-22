@@ -7,12 +7,9 @@
 #include "findPiece.h"
 #include "gamestate.h"
 
-int isThreatened(int x, int y, PIECE * * * board, COLOR color);
+int isThreatened(const PIECE * p, PIECE * * * board, COLOR color);
 PIECE * isPinned(PIECE * piece, GAMESTATE * g);
-
-
-
-int * *  getAttackedSquares(PIECE * * * board, COLOR color);
-int * isMovePossible (char * move, PIECE * * * board, COLOR color);
+int * * getAttackedSquares(PIECE * * * board, COLOR color);
+int isLegal (const char * move, GAMESTATE * g, COLOR color);
 
 #endif //THREAT_H

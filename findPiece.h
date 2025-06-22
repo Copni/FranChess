@@ -8,11 +8,12 @@
 
 void addElement(int ***foundPiece, int *pieceCount, int x, int y);
 void removeElement(int ***array, int *size, int index);
-int * * findPawn (char * move, PIECE * * * board, COLOR color);
-int * * findKnight(char *move, PIECE ***board, COLOR color);
-int * * findBishop(char * move, PIECE * * * board, COLOR color);
-int * * findRook (char * move, PIECE * * * board, COLOR color);
-int * * findQueen(char *move, PIECE ***board, COLOR color);
-int * * findKing(char *move, PIECE ***board, COLOR color);
+int * * findPawn (const char * move, PIECE * * * board, COLOR color);
+int * * findKnight(const char *move, PIECE ***board, COLOR color);
+int * * findBishop(const char * move, PIECE * * * board, COLOR color);
+int * * findRook (const char * move, PIECE * * * board, COLOR color);
+int * * findQueen(const char *move, PIECE ***board, COLOR color);
+int * * findKing(const char *move, PIECE ***board, COLOR color);
+int * * findPiece(char * move, PIECE * * * board, COLOR color);
 
 #endif //LEGAL_H

@@ -3,8 +3,10 @@
 //
 #include "threat.h"
 
-int isThreatened(int x, int y, PIECE ***board, COLOR color) {
-    COLOR opponentColor = (color == white) ? black : white;
+int isThreatened(const PIECE * p, PIECE ***board, COLOR color) {
+    const COLOR opponentColor = (color == white) ? black : white;
+    const int x = p->x;
+    const int y = p->y;
 
     // Check for pawns
     if (color == white) {
@@ -120,6 +122,49 @@ PIECE * isPinned(PIECE * p, GAMESTATE * g){
         }
     }
     return NULL;
+}
+
+
+int * * getAttackedSquares(PIECE * * * board, COLOR color) {
+    int * * matrice = malloc(8 * sizeof(int *));
+    for (int i = 0; i < 8; i++) {
+        matrice[i] = malloc(8 * sizeof(int));
+    }
+
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if (isThreatened(board[i][j],board, color * -1) == 1) {
+                matrice[i][j] = 1;
+            } else {
+                matrice[i][j] = 0;
+            }
+        }
+    }
+    return matrice;
+}
+
+int isLegal(const char * move, GAMESTATE * gamestate, COLOR color) {
+    switch (move) {
+        case "O-O-O": // Long castle
+            if (color == white && !gamestate->has_aw_rook_moved && !gamestate->has_w_king_moved && !gamestate->is_w_king_in_check && !isThreatened(gamestate->board[0][2], gamestate->board, black) && !isThreatened(gamestate->board[0][3], gamestate->board, black) && !isThreatened(gamestate->board[0][4], gamestate->board, black)) {
+                return 1;
+            }
+            if (color == black && !gamestate->has_ab_rook_moved && !gamestate->has_b_king_moved && !gamestate->is_b_king_in_check && !isThreatened(gamestate->board[7][2], gamestate->board, black) && !isThreatened(gamestate->board[7][3], gamestate->board, black) && !isThreatened(gamestate->board[7][4], gamestate->board, black)) {
+                return 1;
+            }
+            return 0;
+        case "O-O": // Short castle
+            if (color == white && !gamestate->has_hw_rook_moved && !gamestate->has_w_king_moved && !gamestate->is_w_king_in_check && !isThreatened(gamestate->board[0][4], gamestate->board, black) && !isThreatened(gamestate->board[0][5], gamestate->board, black) && !isThreatened(gamestate->board[0][6], gamestate->board, black)) {
+                return 1;
+            }
+            if (color == black && !gamestate->has_hb_rook_moved && !gamestate->has_b_king_moved && !gamestate->is_b_king_in_check && !isThreatened(gamestate->board[7][4], gamestate->board, white) && !isThreatened(gamestate->board[7][5], gamestate->board, white) && !isThreatened(gamestate->board[7][6], gamestate->board, white)) {
+                return 1;
+            }
+            return 0;
+        default:
+            break;
+    }
+    if (isL)
 }
 /*
 int * isMovePossible (char * move, PIECE * * * board, COLOR color) {

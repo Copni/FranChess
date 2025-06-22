@@ -45,7 +45,7 @@ void removeElement(int ***array, int *size, int index) {
     }
 }
 
-int **findPawn(char *move, PIECE ***board, COLOR color) {
+int **findPawn(const char *move, PIECE ***board, COLOR color) {
     int const x = move[3] - 'a';
     int const y = move[4] - '0' - 1;
 
@@ -118,7 +118,7 @@ int **findPawn(char *move, PIECE ***board, COLOR color) {
     return foundPawn;
 }
 
-int **findKnight(char *move, PIECE ***board, COLOR color) {
+int **findKnight(const char *move, PIECE ***board, COLOR color) {
     int x = move[3] - 'a';
     int y = move[4] - '0' - 1;
     int **foundKnight = NULL;
@@ -143,7 +143,7 @@ int **findKnight(char *move, PIECE ***board, COLOR color) {
     return foundKnight;
 }
 
-int **findBishop(char *move, PIECE ***board, COLOR color) {
+int **findBishop(const char *move, PIECE ***board, COLOR color) {
         int x = move[3] - 'a';
         int y = move[4] - '0' - 1;
 
@@ -175,7 +175,7 @@ int **findBishop(char *move, PIECE ***board, COLOR color) {
         return foundBishop;
     }
 
-    int **findRook(char *move, PIECE ***board, COLOR color) {
+    int **findRook(const char *move, PIECE ***board, COLOR color) {
         int x = move[3] - 'a';
         int y = move[4] - '0' - 1;
 
@@ -207,7 +207,7 @@ int **findBishop(char *move, PIECE ***board, COLOR color) {
         return foundRook;
     }
 
-int **findQueen(char *move, PIECE ***board, COLOR color) {
+int **findQueen(const char *move, PIECE ***board, COLOR color) {
     int x = move[3] - 'a';
     int y = move[4] - '0' - 1;
     int **foundQueen = NULL;
@@ -240,7 +240,7 @@ int **findQueen(char *move, PIECE ***board, COLOR color) {
 }
 
 
-int **findKing(char *move, PIECE ***board, COLOR color) {
+int **findKing(const char *move, PIECE ***board, COLOR color) {
     int x = move[3] - 'a';
     int y = move[4] - '0' - 1;
     int **foundKing = NULL;
@@ -264,4 +264,24 @@ int **findKing(char *move, PIECE ***board, COLOR color) {
     foundKing[kingCount] = NULL;
 
     return foundKing;
+}
+
+
+int * * findPiece(char * move, PIECE * * * board, COLOR color) {
+    switch (move[0]) {
+        case 'P':
+            return findPawn(move, board, color);
+        case 'N':
+            return findKnight(move, board, color);
+        case 'B':
+            return findBishop(move, board, color);
+        case 'R':
+            return findRook(move, board, color);
+        case 'Q':
+            return findQueen(move, board, color);
+        case 'K':
+            return findKing(move, board, color);
+        default:
+            return NULL;
+    }
 }

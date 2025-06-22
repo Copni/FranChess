@@ -131,30 +131,6 @@ void displayBoardv2(PIECE ***board, COLOR side) {
 }
 
 
-/*
-void display_boardv2(PIECE * * *board, COLOR side) {
-    setlocale(LC_ALL, "");
-    switch (side) {
-        case white: {
-            wprintf(L"╔═══╤═══╤═══╤═══╤═══╤═══╤═══╤═══╗\n");
-            wprintf(L"║ %s │ %c │ %c │ %c │ %c │ %c  │ %c │ %c  ║\n", white_pawn, board[1][1]->symbole,
-                   board[1][1]->symbole, board[1][1]->symbole, board[1][1]->symbole, board[1][1]->symbole,
-                   board[1][1]->symbole );
-
-            printf("╟───┼───┼───┼───┼───┼───┼───┼───╢\n");
-            break;
-        }
-        case black: {
-            break;
-        }
-        default: {
-            printf("\nIncorrect parameter");
-            break;
-        }
-    }
-}
-*/
-
 void saveBoard(PIECE * * * board, char * fileName) {
     FILE * f = fopen(fileName, "w");
     if (f == NULL) {

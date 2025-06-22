@@ -16,10 +16,13 @@ typedef struct {
     int has_hw_rook_moved;
     int has_w_king_moved;
     int has_b_king_moved;
+    int is_w_king_in_check;
+    int is_b_king_in_check;
     PIECE * w_king;
     PIECE * b_king;
 }GAMESTATE;
 
 GAMESTATE * init_board_data();
+GAMESTATE * gen_board_data(PIECE * * * board);
 void display_board(GAMESTATE * g);
 #endif //BOARD_DATA_H
