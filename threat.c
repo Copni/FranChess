@@ -144,27 +144,32 @@ int * * getAttackedSquares(PIECE * * * board, COLOR color) {
 }
 
 int isLegal(const char * move, GAMESTATE * gamestate, COLOR color) {
-    switch (move) {
-        case "O-O-O": // Long castle
-            if (color == white && !gamestate->has_aw_rook_moved && !gamestate->has_w_king_moved && !gamestate->is_w_king_in_check && !isThreatened(gamestate->board[0][2], gamestate->board, black) && !isThreatened(gamestate->board[0][3], gamestate->board, black) && !isThreatened(gamestate->board[0][4], gamestate->board, black)) {
-                return 1;
-            }
-            if (color == black && !gamestate->has_ab_rook_moved && !gamestate->has_b_king_moved && !gamestate->is_b_king_in_check && !isThreatened(gamestate->board[7][2], gamestate->board, black) && !isThreatened(gamestate->board[7][3], gamestate->board, black) && !isThreatened(gamestate->board[7][4], gamestate->board, black)) {
-                return 1;
-            }
-            return 0;
-        case "O-O": // Short castle
-            if (color == white && !gamestate->has_hw_rook_moved && !gamestate->has_w_king_moved && !gamestate->is_w_king_in_check && !isThreatened(gamestate->board[0][4], gamestate->board, black) && !isThreatened(gamestate->board[0][5], gamestate->board, black) && !isThreatened(gamestate->board[0][6], gamestate->board, black)) {
-                return 1;
-            }
-            if (color == black && !gamestate->has_hb_rook_moved && !gamestate->has_b_king_moved && !gamestate->is_b_king_in_check && !isThreatened(gamestate->board[7][4], gamestate->board, white) && !isThreatened(gamestate->board[7][5], gamestate->board, white) && !isThreatened(gamestate->board[7][6], gamestate->board, white)) {
-                return 1;
-            }
-            return 0;
-        default:
-            break;
+    if (move != "O-O" && move != "O-O-O") {
+        findPawn()
+    } else {
+        switch (move) {
+            case "O-O-O": // Long castle
+                if (color == white && !gamestate->has_aw_rook_moved && !gamestate->has_w_king_moved && !gamestate->is_w_king_in_check && !isThreatened(gamestate->board[0][2], gamestate->board, black) && !isThreatened(gamestate->board[0][3], gamestate->board, black) && !isThreatened(gamestate->board[0][4], gamestate->board, black)) {
+                    return 1;
+                }
+                if (color == black && !gamestate->has_ab_rook_moved && !gamestate->has_b_king_moved && !gamestate->is_b_king_in_check && !isThreatened(gamestate->board[7][2], gamestate->board, black) && !isThreatened(gamestate->board[7][3], gamestate->board, black) && !isThreatened(gamestate->board[7][4], gamestate->board, black)) {
+                    return 1;
+                }
+                return 0;
+            case "O-O": // Short castle
+                if (color == white && !gamestate->has_hw_rook_moved && !gamestate->has_w_king_moved && !gamestate->is_w_king_in_check && !isThreatened(gamestate->board[0][4], gamestate->board, black) && !isThreatened(gamestate->board[0][5], gamestate->board, black) && !isThreatened(gamestate->board[0][6], gamestate->board, black)) {
+                    return 1;
+                }
+                if (color == black && !gamestate->has_hb_rook_moved && !gamestate->has_b_king_moved && !gamestate->is_b_king_in_check && !isThreatened(gamestate->board[7][4], gamestate->board, white) && !isThreatened(gamestate->board[7][5], gamestate->board, white) && !isThreatened(gamestate->board[7][6], gamestate->board, white)) {
+                    return 1;
+                }
+                return 0;
+            default:
+                break;
+        }
     }
-    if (isL)
+
+
 }
 /*
 int * isMovePossible (char * move, PIECE * * * board, COLOR color) {

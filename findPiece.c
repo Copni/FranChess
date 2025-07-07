@@ -14,6 +14,8 @@ Index 6: '+' or '#' if check or mat
 Everything is '0' by default
 */
 
+
+/*
 void addElement(int ***foundPiece, int *pieceCount, int x, int y) {
     *foundPiece = (int **)realloc(*foundPiece, (*pieceCount + 1) * sizeof(int *));
     (*foundPiece)[*pieceCount] = (int *)malloc(2 * sizeof(int));
@@ -283,5 +285,202 @@ int * * findPiece(char * move, PIECE * * * board, COLOR color) {
             return findKing(move, board, color);
         default:
             return NULL;
+    }
+}
+*/
+
+
+//
+// Created by IamaU on 07/11/2024.
+//
+
+#include "findPiece.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+void addElement(PIECE ***foundPieces, int *count, PIECE *piece) {
+    *foundPieces = realloc(*foundPieces, (*count + 1) * sizeof(PIECE *));
+    (*foundPieces)[*count] = piece;
+    (*count)++;
+}
+
+PIECE **findPawn(const char *move, PIECE ***board, COLOR color) {
+    int x = move[3] - 'a';
+    int y = move[4] - '0' - 1;
+    PIECE **found = NULL;
+    int count = 0;
+
+    if (color == white) {
+        if (y >= 1 && board[y - 1][x]->type == pawn && board[y - 1][x]->color == white && move[2] == '0')
+            addPiece(&found, &count, board[y - 1][x]);
+        if (y == 3 && board[y - 2][x]->type == pawn && board[y - 2][x]->color == white &&
+            board[y - 1][x]->type == empty && move[2] == '0')
+            addPiece(&found, &count, board[y - 2][x]);
+        if (move[2] == 'x') {
+            if (x < 7 && board[y - 1][x + 1]->type == pawn && board[y - 1][x + 1]->color == white)
+                addPiece(&found, &count, board[y - 1][x + 1]);
+            if (x > 0 && board[y - 1][x - 1]->type == pawn && board[y - 1][x - 1]->color == white)
+                addPiece(&found, &count, board[y - 1][x - 1]);
+        }
+    } else {
+        if (y <= 6 && board[y + 1][x]->type == pawn && board[y + 1][x]->color == black && move[2] == '0')
+            addPiece(&found, &count, board[y + 1][x]);
+        if (y == 4 && board[y + 2][x]->type == pawn && board[y + 2][x]->color == black &&
+            board[y + 1][x]->type == empty && move[2] == '0')
+            addPiece(&found, &count, board[y + 2][x]);
+        if (move[2] == 'x') {
+            if (x < 7 && board[y + 1][x + 1]->type == pawn && board[y + 1][x + 1]->color == black)
+                addPiece(&found, &count, board[y + 1][x + 1]);
+            if (x > 0 && board[y + 1][x - 1]->type == pawn && board[y + 1][x - 1]->color == black)
+                addPiece(&found, &count, board[y + 1][x - 1]);
+        }
+    }
+
+    found = realloc(found, (count + 1) * sizeof(PIECE *));
+    found[count] = NULL;
+    return found;
+}
+
+PIECE **findKnight(const char *move, PIECE ***board, COLOR color) {
+    int x = move[3] - 'a';
+    int y = move[4] - '0' - 1;
+    PIECE **found = NULL;
+    int count = 0;
+
+    int directions[8][2] = {{2, 1}, {2, -1}, {-2, 1}, {-2, -1},
+                            {1, 2}, {1, -2}, {-1, 2}, {-1, -2}};
+
+    for (int i = 0; i < 8; i++) {
+        int ny = y + directions[i][0];
+        int nx = x + directions[i][1];
+        if (ny >= 0 && ny < 8 && nx >= 0 && nx < 8) {
+            if (board[ny][nx]->type == knight && board[ny][nx]->color == color) {
+                addPiece(&found, &count, board[ny][nx]);
+            }
+        }
+    }
+
+    found = realloc(found, (count + 1) * sizeof(PIECE *));
+    found[count] = NULL;
+    return found;
+}
+
+PIECE **findBishop(const char *move, PIECE ***board, COLOR color) {
+    int x = move[3] - 'a';
+    int y = move[4] - '0' - 1;
+    PIECE **found = NULL;
+    int count = 0;
+
+    int directions[4][2] = {{1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
+    for (int i = 0; i < 4; i++) {
+        int ny = y + directions[i][0];
+        int nx = x + directions[i][1];
+        while (ny >= 0 && ny < 8 && nx >= 0 && nx < 8) {
+            if (board[ny][nx]->type == empty) {
+                ny += directions[i][0];
+                nx += directions[i][1];
+            } else {
+                if (board[ny][nx]->type == bishop && board[ny][nx]->color == color) {
+                    addPiece(&found, &count, board[ny][nx]);
+                }
+                break;
+            }
+        }
+    }
+
+    found = realloc(found, (count + 1) * sizeof(PIECE *));
+    found[count] = NULL;
+    return found;
+}
+
+PIECE **findRook(const char *move, PIECE ***board, COLOR color) {
+    int x = move[3] - 'a';
+    int y = move[4] - '0' - 1;
+    PIECE **found = NULL;
+    int count = 0;
+
+    int directions[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    for (int i = 0; i < 4; i++) {
+        int ny = y + directions[i][0];
+        int nx = x + directions[i][1];
+        while (ny >= 0 && ny < 8 && nx >= 0 && nx < 8) {
+            if (board[ny][nx]->type == empty) {
+                ny += directions[i][0];
+                nx += directions[i][1];
+            } else {
+                if (board[ny][nx]->type == rook && board[ny][nx]->color == color) {
+                    addPiece(&found, &count, board[ny][nx]);
+                }
+                break;
+            }
+        }
+    }
+
+    found = realloc(found, (count + 1) * sizeof(PIECE *));
+    found[count] = NULL;
+    return found;
+}
+
+PIECE **findQueen(const char *move, PIECE ***board, COLOR color) {
+    int x = move[3] - 'a';
+    int y = move[4] - '0' - 1;
+    PIECE **found = NULL;
+    int count = 0;
+
+    int directions[8][2] = {{1, 1}, {1, -1}, {-1, 1}, {-1, -1},
+                            {1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    for (int i = 0; i < 8; i++) {
+        int ny = y + directions[i][0];
+        int nx = x + directions[i][1];
+        while (ny >= 0 && ny < 8 && nx >= 0 && nx < 8) {
+            if (board[ny][nx]->type == empty) {
+                ny += directions[i][0];
+                nx += directions[i][1];
+            } else {
+                if (board[ny][nx]->type == queen && board[ny][nx]->color == color) {
+                    addPiece(&found, &count, board[ny][nx]);
+                }
+                break;
+            }
+        }
+    }
+
+    found = realloc(found, (count + 1) * sizeof(PIECE *));
+    found[count] = NULL;
+    return found;
+}
+
+PIECE **findKing(const char *move, PIECE ***board, COLOR color) {
+    int x = move[3] - 'a';
+    int y = move[4] - '0' - 1;
+    PIECE **found = NULL;
+    int count = 0;
+
+    int directions[8][2] = {{1, 1}, {1, -1}, {-1, 1}, {-1, -1},
+                            {1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    for (int i = 0; i < 8; i++) {
+        int ny = y + directions[i][0];
+        int nx = x + directions[i][1];
+        if (ny >= 0 && ny < 8 && nx >= 0 && nx < 8) {
+            if (board[ny][nx]->type == king && board[ny][nx]->color == color) {
+                addPiece(&found, &count, board[ny][nx]);
+            }
+        }
+    }
+
+    found = realloc(found, (count + 1) * sizeof(PIECE *));
+    found[count] = NULL;
+    return found;
+}
+
+PIECE **findPiece(char *move, PIECE ***board, COLOR color) {
+    switch (move[0]) {
+        case 'P': return findPawn(move, board, color);
+        case 'N': return findKnight(move, board, color);
+        case 'B': return findBishop(move, board, color);
+        case 'R': return findRook(move, board, color);
+        case 'Q': return findQueen(move, board, color);
+        case 'K': return findKing(move, board, color);
+        default: return NULL;
     }
 }
