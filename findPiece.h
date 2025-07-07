@@ -25,7 +25,7 @@ int * * findPiece(char * move, PIECE * * * board, COLOR color);
 // New version returning a pointer to the found piece
 
 
-void addElement(PIECE * * * foundPieces, int * count, PIECE *piece);
+void addPiece(PIECE * * * foundPieces, int * count, PIECE *piece);
 PIECE * * findPawn (const char * move, PIECE * * * board, COLOR color);
 PIECE * * findKnight(const char *move, PIECE * * * board, COLOR color);
 PIECE * * findBishop(const char * move, PIECE * * * board, COLOR color);

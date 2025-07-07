@@ -298,16 +298,16 @@ int * * findPiece(char * move, PIECE * * * board, COLOR color) {
 #include <stdlib.h>
 #include <stdio.h>
 
-void addElement(PIECE ***foundPieces, int *count, PIECE *piece) {
+void addPiece(PIECE ***foundPieces, int *count, PIECE *piece) {
     *foundPieces = realloc(*foundPieces, (*count + 1) * sizeof(PIECE *));
     (*foundPieces)[*count] = piece;
     (*count)++;
 }
 
-PIECE **findPawn(const char *move, PIECE ***board, COLOR color) {
+PIECE * * findPawn(const char * move, PIECE * * * board, COLOR color) {
     int x = move[3] - 'a';
     int y = move[4] - '0' - 1;
-    PIECE **found = NULL;
+    PIECE * * found = NULL;
     int count = 0;
 
     if (color == white) {
@@ -341,10 +341,10 @@ PIECE **findPawn(const char *move, PIECE ***board, COLOR color) {
     return found;
 }
 
-PIECE **findKnight(const char *move, PIECE ***board, COLOR color) {
+PIECE * * findKnight(const char * move, PIECE * * * board, COLOR color) {
     int x = move[3] - 'a';
     int y = move[4] - '0' - 1;
-    PIECE **found = NULL;
+    PIECE * * found = NULL;
     int count = 0;
 
     int directions[8][2] = {{2, 1}, {2, -1}, {-2, 1}, {-2, -1},
@@ -365,10 +365,10 @@ PIECE **findKnight(const char *move, PIECE ***board, COLOR color) {
     return found;
 }
 
-PIECE **findBishop(const char *move, PIECE ***board, COLOR color) {
+PIECE * * findBishop(const char * move, PIECE * * * board, COLOR color) {
     int x = move[3] - 'a';
     int y = move[4] - '0' - 1;
-    PIECE **found = NULL;
+    PIECE * * found = NULL;
     int count = 0;
 
     int directions[4][2] = {{1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
@@ -393,10 +393,10 @@ PIECE **findBishop(const char *move, PIECE ***board, COLOR color) {
     return found;
 }
 
-PIECE **findRook(const char *move, PIECE ***board, COLOR color) {
+PIECE * * findRook(const char *move, PIECE ***board, COLOR color) {
     int x = move[3] - 'a';
     int y = move[4] - '0' - 1;
-    PIECE **found = NULL;
+    PIECE * * found = NULL;
     int count = 0;
 
     int directions[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
@@ -421,10 +421,10 @@ PIECE **findRook(const char *move, PIECE ***board, COLOR color) {
     return found;
 }
 
-PIECE **findQueen(const char *move, PIECE ***board, COLOR color) {
+PIECE * * findQueen(const char *move, PIECE ***board, COLOR color) {
     int x = move[3] - 'a';
     int y = move[4] - '0' - 1;
-    PIECE **found = NULL;
+    PIECE * * found = NULL;
     int count = 0;
 
     int directions[8][2] = {{1, 1}, {1, -1}, {-1, 1}, {-1, -1},
@@ -450,10 +450,10 @@ PIECE **findQueen(const char *move, PIECE ***board, COLOR color) {
     return found;
 }
 
-PIECE **findKing(const char *move, PIECE ***board, COLOR color) {
+PIECE * * findKing(const char * move, PIECE * * * board, COLOR color) {
     int x = move[3] - 'a';
     int y = move[4] - '0' - 1;
-    PIECE **found = NULL;
+    PIECE * * found = NULL;
     int count = 0;
 
     int directions[8][2] = {{1, 1}, {1, -1}, {-1, 1}, {-1, -1},
@@ -473,7 +473,7 @@ PIECE **findKing(const char *move, PIECE ***board, COLOR color) {
     return found;
 }
 
-PIECE **findPiece(char *move, PIECE ***board, COLOR color) {
+PIECE * * findPiece(char * move, PIECE * * * board, COLOR color) {
     switch (move[0]) {
         case 'P': return findPawn(move, board, color);
         case 'N': return findKnight(move, board, color);
