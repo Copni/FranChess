@@ -24,13 +24,14 @@ int * * findPiece(char * move, PIECE * * * board, COLOR color);
 
 // New version returning a pointer to the found piece
 
-void addElement(PIECE ***foundPieces, int *count, PIECE *piece);
-PIECE * findPawn (const char * move, PIECE * * * board, COLOR color);
-PIECE * findKnight(const char *move, PIECE ***board, COLOR color);
-PIECE * findBishop(const char * move, PIECE * * * board, COLOR color);
-PIECE * findRook (const char * move, PIECE * * * board, COLOR color);
-PIECE * findQueen(const char *move, PIECE ***board, COLOR color);
-PIECE * findKing(const char *move, PIECE ***board, COLOR color);
-PIECE * findPiece(char * move, PIECE * * * board, COLOR color);
+
+void addElement(PIECE * * * foundPieces, int * count, PIECE *piece);
+PIECE * * findPawn (const char * move, PIECE * * * board, COLOR color);
+PIECE * * findKnight(const char *move, PIECE * * * board, COLOR color);
+PIECE * * findBishop(const char * move, PIECE * * * board, COLOR color);
+PIECE * * findRook (const char * move, PIECE * * * board, COLOR color);
+PIECE * * findQueen(const char * move, PIECE * * * board, COLOR color);
+PIECE * * findKing(const char * move, PIECE * * * board, COLOR color);
+PIECE * * findPiece(char * move, PIECE * * * board, COLOR color);
 
 #endif //LEGAL_H
