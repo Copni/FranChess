@@ -21,6 +21,7 @@ int main() {
     board1[7][7] = createPiece(bishop, black);
     board1[3][3] = createPiece(pawn, black);
     displayBoard(newboard,white);
+    displayBoardv2(newboard,white);
     saveBoard(board1, "test.txt");
     PIECE * * * board2 = loadBoard("test.txt");
     displayBoardv2(board2, white);

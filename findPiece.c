@@ -304,6 +304,27 @@ void addPiece(PIECE ***foundPieces, int *count, PIECE *piece) {
     (*count)++;
 }
 
+void removePiece(PIECE * * * foundPieces, int *count, PIECE *piece) {
+    for (int i = 0; i < *count; i++) {
+        if ((*foundPieces)[i] == piece) {
+            for (int j = i; j < *count - 1; j++) {
+                (*foundPieces)[j] = (*foundPieces)[j + 1];
+            }
+            (*count)--;
+            *foundPieces = realloc(*foundPieces, (*count) * sizeof(PIECE *));
+            break;
+        }
+    }
+}
+
+int countPiece(PIECE * * foundPieces) {
+    int i = 0;
+    while ((foundPieces)[i] != NULL) {
+        i++;
+    }
+    return i;
+}
+
 PIECE * * findPawn(const char * move, PIECE * * * board, COLOR color) {
     int x = move[3] - 'a';
     int y = move[4] - '0' - 1;
@@ -473,14 +494,37 @@ PIECE * * findKing(const char * move, PIECE * * * board, COLOR color) {
     return found;
 }
 
-PIECE * * findPiece(char * move, PIECE * * * board, COLOR color) {
+PIECE * findPiece(char * move, PIECE * * * board, COLOR color) {
+    PIECE * * found = NULL;
     switch (move[0]) {
-        case 'P': return findPawn(move, board, color);
-        case 'N': return findKnight(move, board, color);
-        case 'B': return findBishop(move, board, color);
-        case 'R': return findRook(move, board, color);
-        case 'Q': return findQueen(move, board, color);
-        case 'K': return findKing(move, board, color);
+        case 'P': found = findPawn(move, board, color); break;
+        case 'N': found = findKnight(move, board, color); break;
+        case 'B': found = findBishop(move, board, color); break;
+        case 'R': found = findRook(move, board, color); break;
+        case 'Q': found =findQueen(move, board, color); break;
+        case 'K': found = findKing(move, board, color); break;
         default: return NULL;
+    }
+
+    if (move[1] == '0' && countPiece(found) == 1) {
+        return found[0];
+    }
+
+    if (move[1] == '0' && countPiece(found) > 1) {
+        return NULL;
+    }
+
+    if (move[1] == '1') {
+        for (int i = 1; i < countPiece(found); i++) {
+
+        }
+        return NULL;
+    }
+
+    for (int i = 0; found[i] != NULL; i++) {
+        if (found[i]->type == empty) {
+            free(found[i]);
+            found[i] = NULL;
+        }
     }
 }

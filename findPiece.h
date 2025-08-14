@@ -26,12 +26,14 @@ int * * findPiece(char * move, PIECE * * * board, COLOR color);
 
 
 void addPiece(PIECE * * * foundPieces, int * count, PIECE *piece);
+void removePiece(PIECE * * * foundPieces, int * count, PIECE *piece);
+int countPiece(PIECE * * foundPieces);
 PIECE * * findPawn (const char * move, PIECE * * * board, COLOR color);
 PIECE * * findKnight(const char *move, PIECE * * * board, COLOR color);
 PIECE * * findBishop(const char * move, PIECE * * * board, COLOR color);
 PIECE * * findRook (const char * move, PIECE * * * board, COLOR color);
 PIECE * * findQueen(const char * move, PIECE * * * board, COLOR color);
 PIECE * * findKing(const char * move, PIECE * * * board, COLOR color);
-PIECE * * findPiece(char * move, PIECE * * * board, COLOR color);
+PIECE * findPiece(char * move, PIECE * * * board, COLOR color);
 
 #endif //LEGAL_H

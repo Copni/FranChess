@@ -143,6 +143,7 @@ int * * getAttackedSquares(PIECE * * * board, COLOR color) {
     return matrice;
 }
 
+/*
 int isLegal(const char * move, GAMESTATE * gamestate, COLOR color) {
     if (move != "O-O" && move != "O-O-O") {
         findPawn()
