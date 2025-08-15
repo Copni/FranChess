@@ -507,7 +507,7 @@ PIECE * * findKing(const char * move, PIECE * * * board, COLOR color) {
 PIECE * findPiece(char * move, PIECE * * * board, COLOR color) {
     PIECE * * found = NULL;
     switch (move[0]) {
-        case 'P': found = findPawn(move, board, color); break;
+        case '0': found = findPawn(move, board, color); break;
         case 'N': found = findKnight(move, board, color); break;
         case 'B': found = findBishop(move, board, color); break;
         case 'R': found = findRook(move, board, color); break;

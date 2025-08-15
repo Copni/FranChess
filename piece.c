@@ -70,6 +70,12 @@ switch(type) {
 }
 
 void printPiece(PIECE * piece) {
+    if (piece == NULL) {
+        printf("Piece is NULL\n");
+        return;
+    }
+
+    printf("Piece details:\n");
     char *typeStr;
     char *colorStr;
 

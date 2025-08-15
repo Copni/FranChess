@@ -6,6 +6,7 @@
 
 
 int main() {
+    /*
     SetConsoleOutputCP(CP_UTF8);
     printf("Caractères Unicode : ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜\n");
     PIECE * * * newboard = createBoard();
@@ -22,10 +23,17 @@ int main() {
     board1[3][3] = createPiece(pawn, black);
     displayBoard(newboard,white);
     displayBoardv2(newboard,white);
+
+
+
+
+    /*
+     *
+     *
+     *
     saveBoard(board1, "test.txt");
     PIECE * * * board2 = loadBoard("test.txt");
     displayBoardv2(board2, white);
-
 
     GAMESTATE * g = gen_board_data(board1);
     if (isPinned(board1[0][5], g) != NULL) {
@@ -44,8 +52,21 @@ int main() {
         printf("La pièce n'est pas clouée.\n");
     }
 
+    */
 
 
+    // Supposons que les prototypes suivants existent dans findpiece.c
+    // PIECE *findKing(PIECE ***board, COLOR color);
+    // PIECE *findRook(PIECE ***board, COLOR color, int rookIndex);
+    // PIECE *findPiece(PIECE ***board, TYPE type, COLOR color);
+
+    PIECE ***board = createBoard();
+    setBoard(board); // Position initiale
+    displayBoardv2(board,white);
+
+    char * move = getMove();
+    PIECE * p = findPiece(move, board, black);
+    printPiece(p);
 
     return 0;
 }
