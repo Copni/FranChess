@@ -325,6 +325,16 @@ int countPiece(PIECE * * foundPieces) {
     return i;
 }
 
+int isRorC(char c) {
+    if (c >= 'a' && c <= 'h') {
+        return 1;
+    }
+    if (c >= '1' && c <= '8') {
+        return  -1;
+    }
+    return 0;
+}
+
 PIECE * * findPawn(const char * move, PIECE * * * board, COLOR color) {
     int x = move[3] - 'a';
     int y = move[4] - '0' - 1;
@@ -514,17 +524,40 @@ PIECE * findPiece(char * move, PIECE * * * board, COLOR color) {
         return NULL;
     }
 
-    if (move[1] == '1') {
-        for (int i = 1; i < countPiece(found); i++) {
-
+    PIECE *p = NULL;
+    if (move[1] != '0') {
+        switch (isRorC(move[1])){
+            case 1 :
+                const int column = move[1] - 'a';
+                for (int i = 0 ; i < countPiece(found); i++) {
+                    if (column == found[i]->x) {
+                        if (p == NULL) {
+                            p = found[i];
+                        }
+                        else {
+                            return NULL;
+                        }
+                    }
+                }
+            case -1 :
+                const int row = move[1] - '1';
+                for (int i = 0 ; i < countPiece(found); i++) {
+                    if (row == found[i]->y) {
+                        if (p == NULL) {
+                            p = found[i];
+                        }
+                        else {
+                            return NULL;
+                        }
+                    }
+                }
+            default:
+                return NULL;
         }
         return NULL;
     }
 
-    for (int i = 0; found[i] != NULL; i++) {
-        if (found[i]->type == empty) {
-            free(found[i]);
-            found[i] = NULL;
-        }
-    }
+    free(found);
+    found = NULL;
+    return p;
 }
