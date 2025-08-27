@@ -4,7 +4,7 @@
 
 #ifndef THREAT_H
 #define THREAT_H
-#include "findPiece.h"
+#include "findpiece.h"
 #include "gamestate.h"
 
 int isThreatened(const PIECE * p, PIECE * * * board, COLOR color);

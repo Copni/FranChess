@@ -16,4 +16,6 @@ add_executable(FranChess main.c
         threat.h
         gamestate.c
         gamestate.h
+        displacement.h
+        displacement.c
 )

@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include "threat.h"
-#include <assert.h>
 
-#include <windows.h>
 
 
 int main() {
