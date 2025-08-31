@@ -23,11 +23,12 @@
 
 PIECE * * * createBoard();
 void setBoard(PIECE * * *);
-void setEmpty(PIECE * * *board);
+void setEmpty(PIECE * * * board);
 void displayBoard(PIECE * * *, COLOR);
 void displayBoardv2(PIECE * * *, COLOR);
 void saveBoard(PIECE * * *, char * fileName);
 PIECE * * * loadBoard(char * fileName);
+PIECE * * * copyBoard(PIECE * * * board);
 void deleteBoard(PIECE * * *);
 
 #endif //CHESSNOTATIONTRAINING_BOARD_H

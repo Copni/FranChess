@@ -74,7 +74,7 @@ int isThreatened(const PIECE * p, PIECE ***board, COLOR color) {
     return 0;
 }
 
-
+// Vérifie si une pièce p est clouée à son roi, retourne la pièce qui la cloue si c'est le cas, NULL sinon
 PIECE * isPinned(PIECE * p, GAMESTATE * g){
     PIECE * king = (p->color == white) ? g->w_king : g->b_king;
     int xk = king->x, yk = king->y;

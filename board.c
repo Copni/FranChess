@@ -228,6 +228,17 @@ PIECE * * * loadBoard(char * fileName) {
 }
 
 
+PIECE * * * copyBoard(PIECE * * * board) {
+    PIECE * * * newBoard = createBoard();
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            newBoard[i][j] = createPiece(board[i][j]->type, board[i][j]->color);
+        }
+    }
+    return newBoard;
+}
+
+
 void deleteBoard(PIECE * * *board) {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "threat.h"
+#include "displacement.h"
 
 
 
@@ -25,10 +26,7 @@ int main() {
 
 
 
-    /*
-     *
-     *
-     *
+
     saveBoard(board1, "test.txt");
     PIECE * * * board2 = loadBoard("test.txt");
     displayBoardv2(board2, white);
@@ -61,10 +59,13 @@ int main() {
     PIECE ***board = createBoard();
     setBoard(board); // Position initiale
     displayBoardv2(board,white);
+    swapPiece(board, board[0][0], board[3][4]);
+    displayBoardv2(board,white);
 
     char * move = getMove();
     PIECE * p = findPiece(move, board, black);
     printPiece(p);
+
 
     return 0;
 }

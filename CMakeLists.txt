@@ -18,4 +18,6 @@ add_executable(FranChess main.c
         gamestate.h
         displacement.h
         displacement.c
+        logger.c
+        logger.h
 )
