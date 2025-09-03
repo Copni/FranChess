@@ -35,7 +35,11 @@ int isPiece(char c) {
     return 0;
 }
 
-char *getMove() {
+MOVE *getMove() {
+    MOVE * M = (MOVE *) malloc(sizeof(MOVE));
+    M->move = NULL;
+    M->type = classic;
+
     //get the move
     char inputMove[6];
     char *outputMove = malloc(7 * sizeof(char));
@@ -67,9 +71,18 @@ char *getMove() {
     if (moveLength < 2 || moveLength > 6) {
         return NULL;
     }
-    if (same_string(inputMove, "O-O-O") || same_string(inputMove, "O-O")) {
-        return outputMove;
+    if (same_string(inputMove, "O-O-O")) {
+        M->move = "O-O-O";
+        M->type = long_castle;
+        return M;
     }
+
+    if (same_string(inputMove, "O-O")) {
+        M->move = "O-O";
+        M->type = castle;
+        return M;
+    }
+
     // Find row index to use it as a reference index next
     int line = 0;
     for (int i = moveLength - 1; i >= 0; i--) {
@@ -94,7 +107,8 @@ char *getMove() {
     }
 
     if (moveLength == 2) {
-        return outputMove;
+        M->move = outputMove;
+        return M;
     }
 
     if (inputMove[line + 1] != '\0') {
@@ -122,17 +136,20 @@ char *getMove() {
         }
     }
     if (line == 1) {
-        return outputMove;
+        M->move = outputMove;
+        return M;
     }
 
     if (line == 2) {
         if (isPiece(inputMove[0])) {
             outputMove[0] = inputMove[0];
-            return outputMove;
+            M->move = outputMove;
+            return M;
         }
         if (inputMove[0] == 'x') {
             outputMove[2] = 'x';
-            return outputMove;
+            M->move = outputMove;
+            return M;
         }
         return NULL;
     }
@@ -141,12 +158,14 @@ char *getMove() {
             if ((inputMove[0] >= 'a' && inputMove[0] <= 'h') || (inputMove[0] >= '1' && inputMove[0] <= '8')){
                 outputMove[2] = 'x';
                 outputMove[1] = inputMove[0];
-                return outputMove;
+                M->move = outputMove;
+                return M;
             }
             if (isPiece(inputMove[0])) {
                 outputMove[2] = 'x';
                 outputMove[0] = inputMove[0];
-                return outputMove;
+                M->move = outputMove;
+                return M;
             }
             return NULL;
         }
@@ -154,7 +173,8 @@ char *getMove() {
                 isPiece(inputMove[0]))) {
             outputMove[0] = inputMove[0];
             outputMove[1] = inputMove[1];
-            return outputMove;
+            M->move = outputMove;
+            return M;
         }
         return NULL;
     }
@@ -168,7 +188,8 @@ char *getMove() {
             // In this condition is respected then inputMove is finished by "\0\0" and mess up the previous code
             outputMove[6] = '0';
             outputMove[7] = '\0';
-            return outputMove;
+            M->move = outputMove;
+            return M;
         }
     }
     return NULL;

@@ -24,5 +24,6 @@ typedef struct {
 
 GAMESTATE * init_board_data();
 GAMESTATE * gen_board_data(PIECE * * * board);
+GAMESTATE * copy_game_state(GAMESTATE * g);
 void display_board(GAMESTATE * g);
 #endif //BOARD_DATA_H

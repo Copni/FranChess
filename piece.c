@@ -3,9 +3,11 @@
 //
 #include "piece.h"
 
-PIECE * createPiece(PIECE_TYPE type, COLOR color){
+PIECE * createPiece(PIECE_TYPE type, COLOR color, int x, int y) {
     PIECE * p = (PIECE *) malloc(sizeof(PIECE));
     p->type = type;
+    p->x = x;
+    p->y = y;
     if(type == empty) {
         p->color = grey;
         p->symbole = '*';
@@ -95,10 +97,15 @@ void printPiece(PIECE * piece) {
         case grey: colorStr = "Grey"; break;
     }
 
-    printf("Piece information:\n    Type: %s\n    Color: %s\n", typeStr, colorStr);
+    printf("Piece information:\n    Type: %s\n    Color: %s\n    Position: (%d, %d)", typeStr, colorStr, piece->x, piece->y);
 }
 
-void deletePiece(PIECE * p){
-    free(p);
-    p = NULL;
+void deletePiece(PIECE * piece){
+    free(piece);
+    piece = NULL;
+}
+
+PIECE * copyPiece(PIECE * piece) {
+    PIECE * newPiece = createPiece(piece->type, piece->color, piece->x, piece->y);
+    return newPiece;
 }

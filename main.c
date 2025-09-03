@@ -3,7 +3,6 @@
 #include "displacement.h"
 
 
-
 int main() {
     /*
     SetConsoleOutputCP(CP_UTF8);
@@ -55,15 +54,29 @@ int main() {
     // PIECE *findKing(PIECE ***board, COLOR color);
     // PIECE *findRook(PIECE ***board, COLOR color, int rookIndex);
     // PIECE *findPiece(PIECE ***board, TYPE type, COLOR color);
-
+    /*
     PIECE ***board = createBoard();
     setBoard(board); // Position initiale
     displayBoardv2(board,white);
-    swapPiece(board, board[0][0], board[3][4]);
-    displayBoardv2(board,white);
+    */
+    GAMESTATE *g = init_board_data();
+    setEmpty(g->board);
 
-    char * move = getMove();
-    PIECE * p = findPiece(move, board, black);
+    g->board[7][4] = createPiece(king, black, 4, 7);
+    g->board[7][7] = createPiece(rook, black, 7, 7);
+    g->board[7][0] = createPiece(rook, black, 0, 7);
+
+    MOVE *M = (MOVE *) malloc(sizeof(MOVE));
+    M->move = NULL;
+    M->type = long_castle;
+    executeMove(g, M, black);
+
+    displayBoardv2(g->board, white);
+
+
+    MOVE *move = getMove();
+    PIECE *p = findPiece(move, g->board, black);
+
     printPiece(p);
 
 

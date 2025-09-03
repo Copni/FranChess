@@ -22,6 +22,7 @@ GAMESTATE * init_board_data() {
     return g;
 }
 
+
 GAMESTATE * gen_board_data(PIECE * * * board) {
     GAMESTATE * g = (GAMESTATE *) malloc(sizeof(GAMESTATE));
     g->board = board;
@@ -46,6 +47,26 @@ GAMESTATE * gen_board_data(PIECE * * * board) {
     }
     return g;
 }
+
+
+GAMESTATE * copy_game_state(GAMESTATE * g) {
+    GAMESTATE * h = (GAMESTATE *) malloc(sizeof(GAMESTATE));
+    h->board = copyBoard(g->board);
+    h->black_score = g->black_score;
+    h->white_score = g->white_score;
+    h->has_ab_rook_moved = g->has_ab_rook_moved;
+    h->has_hb_rook_moved = g->has_hb_rook_moved;
+    h->has_aw_rook_moved = g->has_aw_rook_moved;
+    h->has_hw_rook_moved = g->has_hw_rook_moved;
+    h->has_w_king_moved = g->has_w_king_moved;
+    h->has_b_king_moved = g->has_b_king_moved;
+    h->is_w_king_in_check = g->is_w_king_in_check;
+    h->is_b_king_in_check = g->is_b_king_in_check;
+    h->w_king = h->board[g->w_king->y][g->w_king->x];
+    h->b_king = h->board[g->b_king->y][g->b_king->x];
+    return h;
+}
+
 
 void display_board(GAMESTATE * g) {
     printf("Black score: %d\n", g->black_score);

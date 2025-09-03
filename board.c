@@ -21,30 +21,30 @@ void setBoard(PIECE * * *board) {
         return;
     }
     for (int i = 0; i < 8; i++) {
-        board[1][i] = createPiece(pawn, white);
+        board[1][i] = createPiece(pawn, white, i, 1);
     }
-    board[0][0] = createPiece(rook, white);
-    board[0][7] = createPiece(rook, white);
-    board[0][1] = createPiece(knight, white);
-    board[0][6] = createPiece(knight, white);
-    board[0][2] = createPiece(bishop, white);
-    board[0][5] = createPiece(bishop, white);
-    board[0][4] = createPiece(king, white);
-    board[0][3] = createPiece(queen, white);
+    board[0][0] = createPiece(rook, white, 0, 0);
+    board[0][7] = createPiece(rook, white, 0, 7);
+    board[0][1] = createPiece(knight, white, 0, 1);
+    board[0][6] = createPiece(knight, white, 0, 6);
+    board[0][2] = createPiece(bishop, white, 0, 2);
+    board[0][5] = createPiece(bishop, white, 0, 5);
+    board[0][4] = createPiece(king, white, 0, 4);
+    board[0][3] = createPiece(queen, white, 0, 3);
     for (int i = 0; i < 8; i++) {
-        board[6][i] = createPiece(pawn, black);
+        board[6][i] = createPiece(pawn, black, 6, i);
     }
-    board[7][0] = createPiece(rook, black);
-    board[7][7] = createPiece(rook, black);
-    board[7][1] = createPiece(knight, black);
-    board[7][6] = createPiece(knight, black);
-    board[7][2] = createPiece(bishop, black);
-    board[7][5] = createPiece(bishop, black);
-    board[7][4] = createPiece(king, black);
-    board[7][3] = createPiece(queen, black);
+    board[7][0] = createPiece(rook, black, 7, 0);
+    board[7][7] = createPiece(rook, black, 7, 7);
+    board[7][1] = createPiece(knight, black, 7, 1);
+    board[7][6] = createPiece(knight, black, 7, 6);
+    board[7][2] = createPiece(bishop, black, 7, 2);
+    board[7][5] = createPiece(bishop, black, 7, 5);
+    board[7][4] = createPiece(king, black, 7, 4);
+    board[7][3] = createPiece(queen, black, 7, 3);
     for (int i = 2; i < 6; i++) {
         for (int j = 0; j < 8; j++) {
-            board[i][j] = createPiece(empty, grey);
+            board[i][j] = createPiece(empty, grey, j, i);
         }
     }
 }
@@ -52,7 +52,7 @@ void setBoard(PIECE * * *board) {
 void setEmpty(PIECE * * *board) {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            board[i][j] = createPiece(empty, grey);
+            board[i][j] = createPiece(empty, grey, j, i);
         }
     }
 }
@@ -220,7 +220,7 @@ PIECE * * * loadBoard(char * fileName) {
                     break;
                 }
             }
-            board[i][j] = createPiece(type, color);
+            board[i][j] = createPiece(type, color, j, i);
         }
     }
     fclose(f);
@@ -232,7 +232,7 @@ PIECE * * * copyBoard(PIECE * * * board) {
     PIECE * * * newBoard = createBoard();
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            newBoard[i][j] = createPiece(board[i][j]->type, board[i][j]->color);
+            newBoard[i][j] = createPiece(board[i][j]->type, board[i][j]->color, j, i);
         }
     }
     return newBoard;

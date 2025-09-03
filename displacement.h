@@ -6,8 +6,10 @@
 #define ALGECHESS_DISPLACEMENT_H
 #include "threat.h"
 
-void swapPiece (PIECE *** board, PIECE * p, PIECE * q);
-void movePiece (PIECE *** board, PIECE * p, PIECE * q);
-int isLegalMove (GAMESTATE * g, char * move, COLOR color);
+void swapPiece (PIECE *** board, PIECE * p1, PIECE * q);
+int movePiece (PIECE *** board, PIECE * p, PIECE * q);
+int fetchScore(PIECE_TYPE type);
+int executeMove (GAMESTATE * g, MOVE * move, COLOR color);
+void addScore (GAMESTATE * g, PIECE * p);
 
 #endif //ALGECHESS_DISPLACEMENT_H
